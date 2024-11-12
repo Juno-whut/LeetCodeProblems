@@ -1,0 +1,58 @@
+import math
+
+class Solution:
+    def closestPrimes(self, left: int, right: int):
+        
+        primeNums = self.generatePrime(left, right)
+  
+        if len(primeNums) < 2:
+            return [-1,-1]
+        
+        ans = [primeNums[0], primeNums[1]] 
+        tar = ans[1] - ans[0]
+        for i in range(1, len(primeNums)-1):
+            if primeNums[i+1] - primeNums[i] < tar:
+                ans = [primeNums[i], primeNums[i+1]]
+                tar = primeNums[i+1] - primeNums[i]
+        return ans
+    
+
+    def generatePrime(self, left, right):
+        primeNums = [True]*(right+1)
+        for i in range(2, math.isqrt(right)+1):
+            if primeNums[i]:
+                for j in range(i*i, right+1, i):
+                    primeNums[j] = False
+
+        primes = []
+        for i in range(2 if left == 1 else left , len(primeNums)):
+            if primeNums[i]:
+                primes.append(i)
+                
+        return primes
+        
+def main():
+    left = 10
+    right = 19
+    print(Solution().closestPrimes(left, right))
+    left = 4
+    right = 6
+    print(Solution().closestPrimes(left, right))
+    left = 18
+    right = 72
+    print(Solution().closestPrimes(left, right))
+    left = 22
+    right = 49
+    print(Solution().closestPrimes(left, right))
+    left = 100
+    right = 121
+    print(Solution().closestPrimes(left, right))
+    left = 19
+    right = 31
+    print(Solution().closestPrimes(left, right))
+    left = 84084
+    right = 407043
+    print(Solution().closestPrimes(left, right))
+
+if __name__ == "__main__":
+    main()
