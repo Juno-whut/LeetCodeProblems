@@ -1,12 +1,25 @@
 # sort array
 #return number of numbers that are not in the correct position  
 
+
+class Solution:
+    def HeightCheker(self, heights):
+        sorted_heights = sorted(heights)
+        count = 0
+        for i in range(len(heights)):
+            if heights[i] != sorted_heights[i]:
+                count += 1
+        return count
+
+''''
+Working on a different solution that uses quick sort instead of the built in python sort
+
 class Solution:
     def quicleSort(self, heights, lo, hi):
         heightLen = len(heights)-1
         lo = 0
         hi = heightLen
-        if Slo < hi:
+        if lo < hi:
             p = self.partition(heights, lo , hi)
             self.quicleSort(heights, lo, p-1)
             self.quicleSort(heights, p+1, hi)
@@ -24,7 +37,7 @@ class Solution:
                 heights[mid], heights[hi] = heights[hi], heights[mid]
         return i + 1
 
-
+'''
 
 def main():
     lo = 0
@@ -39,11 +52,3 @@ if __name__ == "__main__":
 
 
 
-"""
-sorted_heights = sorted(heights)
-        count = 0
-        for i in range(len(heights)):
-            if heights[i] != sorted_heights[i]:
-                count += 1
-        return count
-"""
