@@ -1,0 +1,17 @@
+1: Understand Problem and All Examples
+
+2: Brainstorm Approaches
+
+3: Think of space/runtime until satisfied
+
+4: Think of implementation of Approach
+
+5: Think of base cases or extreme Examples
+
+6: Add in UnitTests for step 5
+
+7: Code
+
+8: If it doesnt work, debug by gathering more info (stepping through in debugger or paper)
+
+9: Double check space/runtime complexity still matches step 3
