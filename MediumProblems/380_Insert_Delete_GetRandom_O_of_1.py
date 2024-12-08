@@ -5,20 +5,28 @@ class RandomizedSet:
 
     def __init__(self):
         self.my_nums = []
-        self.my_set = set()
+        self.my_dict = {}
 
     def insert(self, val: int) -> bool:
-        if val in self.my_set:
+        if val in self.my_dict:
             return False
-        self.my_set.add(val)
         self.my_nums.append(val)
+        self.my_dict[val] = len(self.my_nums) - 1
         return True
 
     def remove(self, val: int) -> bool:
-        if val in self.my_set:
-            self.my_set.remove(val)
-            self.my_nums.remove(val)
+        if val in self.my_dict and val == self.my_nums[-1]:
+            del self.my_dict[val]
+            self.my_nums.pop()
             return True
+        elif val in self.my_dict:
+            index_of_val = self.my_dict[val]
+            self.my_nums[index_of_val] = self.my_nums[-1]
+            self.my_dict[self.my_nums[-1]] = index_of_val
+            del self.my_dict[val]
+            self.my_nums.pop()
+            return True
+            
         return False
 
     def getRandom(self) -> int:
