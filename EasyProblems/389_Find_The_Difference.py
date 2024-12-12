@@ -13,9 +13,13 @@ class Solution:
             else:
                 seen[i] = 1
 
-        for i in range(len(t)):
-            if t[i] not in seen:
-                return t[i]
+        for i in list(t):
+            if i in seen and (seen[i] == 0):
+                return i
+            elif i not in seen:
+                return i
+            elif i in seen:
+                seen[i] -= 1
            
 
 
