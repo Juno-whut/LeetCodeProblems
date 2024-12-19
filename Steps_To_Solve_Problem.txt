@@ -15,3 +15,5 @@
 8: If it doesnt work, debug by gathering more info (stepping through in debugger or paper)
 
 9: Double check space/runtime complexity still matches step 3
+
+
