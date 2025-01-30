@@ -3,43 +3,31 @@ import unittest
 
 class Solution:
     def trap(self, height) -> int:
-        if len(height) < 3:
-            return 0
+        height_len = len(height)
+        rainwater = 0
+        # find biggest number index
+        BNI = 0
+        for i in range(height_len):
+            if height[i] > height[BNI]:
+                BNI = i
         
-        tallest = max(height)
-        collected_water = self.forward(height, tallest)
-        collected_water2 = self.backward(height, tallest)
-        if collected_water and collected_water2:
-            return collected_water + collected_water2
-        elif collected_water:
-            return collected_water 
-        return collected_water2
-
-    def forward(self, height, tallest):
-        collected_water = 0
-        tallest_stack1 = [height[0]]
-        for i in range(1, len(height)):
-            
-            if height[i] == tallest:
-                return collected_water
-
-            if height[i] < tallest_stack1[-1]:
-                collected_water += tallest_stack1[-1] - height[i]
+        # iterate forwards 
+        biggest = height[0]
+        for i in range(0, BNI, 1):
+            if height[i] > biggest:
+                biggest = height[i]
             else:
-                tallest_stack1.append(height[i])
-    
-    def backward(self, height, tallest):
-        collected_water = 0
-        tallest_stack2 = [height[-1]]
-        for i in range(len(height)-2, -1, -1):
+                rainwater += biggest - height[i]
+
+        # iterate backeards
+        biggest = height[-1]
+        for i in range(height_len-1, BNI, -1):
+            if height[i] > biggest:
+                biggest = height[i]
+            else:
+                rainwater += biggest - height[i]
         
-            if height[i] == tallest:
-                return collected_water
-
-            if height[i] < tallest_stack2[-1]:
-                collected_water += tallest_stack2[-1] - height[i]
-            else:
-                tallest_stack2.append(height[i])
+        return rainwater
         
         
 
