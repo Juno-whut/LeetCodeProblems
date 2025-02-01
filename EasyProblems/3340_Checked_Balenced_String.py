@@ -20,7 +20,7 @@ class IsBalancedTest(unittest.TestCase):
     
     def test_case4(self):
         s = "0000000000000000000000000000000000000000000000000000" # True
-        self.assertEqual(Solution().isBalanced(s), False)
+        self.assertEqual(Solution().isBalanced(s), True)
     
     def test_case5(self):
         s = '1111111111' # True
