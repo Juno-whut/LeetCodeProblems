@@ -3,21 +3,24 @@ import unittest
 
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
-        if not s:
-            return 0
+        hashmap = {}
+        start, end = 0, 0
+        longest = 0
+
+        for i in range(len(s)):
+            if s[i] in hashmap:
+                if longest < (end - start):
+                    longest = end - start
+                if start < (hashmap[s[i]] + 1):   
+                    start = hashmap[s[i]] + 1
+                hashmap[s[i]] = i
+            else:
+                hashmap[s[i]] = i
+            end += 1
         
-        maxlen = 0
-        curr_length = set()
-        for i in s:
-            if i in curr_length:
-                if len(curr_length) > maxlen:
-                    maxlen = len(curr_length)
-                curr_length.clear()
-            curr_length.add(i)
-        
-        if len(curr_length) > maxlen:
-            return len(curr_length)
-        return maxlen
+        if longest < (end - start):
+            return end - start
+        return longest
         
 
 
@@ -32,7 +35,7 @@ class TestLengthOfLongestSubstring(unittest.TestCase):
         self.assertEqual(self.s("bbbbb"), 1)
 
     def test3(self):
-        self.assertEqual(self.s("pwwkew"), 3)
+        self.assertEqual(self.s("abba"), 2)
 
     def test4(self):
         self.assertEqual(self.s(""), 0)
