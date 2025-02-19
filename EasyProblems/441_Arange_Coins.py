@@ -5,14 +5,14 @@ class Solution:
     def arrangeCoins(self, n: int) -> int:
         left, right = 0, n
         while left <= right:
-            k = (left + right) // 2
-            current = k * (k + 1) // 2
+            m = (left + right) // 2
+            current = m * (m + 1) // 2
             if current == n:
-                return k
+                return m
             if current < n:
-                left = k + 1
+                left = m + 1
             else:
-                right = k - 1
+                right = m - 1
         return right
         
 
