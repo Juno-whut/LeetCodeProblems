@@ -5,25 +5,16 @@ import unittest
 
 class Solution:
     def romanToInt(self, s: str) -> int:
-        values = {"I": 1, "IV": 4, "V": 5, "IX": 9, "X": 10, "XL": 40, "L": 50, "XC": 90, "C": 100, "CD": 400, "D": 500, "CM": 900, "M": 1000}
-        lenS = len(s)-1
-        currentLetter = None
-        previousLetter = s[0]
-        total = 0
-        i = 1
-        while i <= lenS:
-
-            currentLetter = s[i]
-            if (previousLetter == "I" or previousLetter == "X" or previousLetter == "C") and (previousLetter != currentLetter):
-                total += values[(previousLetter + currentLetter)]
-                if i + 1 <= lenS:
-                    previousLetter = s[i + 1]
-                    i += 1
+        values = {"I": 1, "V": 5, "X": 10, "L": 50,"C": 100, "D": 500, "M": 1000}
+        
+        total = values[s[-1]]
+        for i in reversed(range(len(s)-1)):
+            if values[s[i]] < values[s[i+1]]:
+                total -= values[s[i]]
             else:
-                total += values[previousLetter]
-                previousLetter = currentLetter
-            i += 1
-        return total if previousLetter+currentLetter in values.items() else total + values[currentLetter]
+                total += values[s[i]]
+        return total
+        
         
 
 

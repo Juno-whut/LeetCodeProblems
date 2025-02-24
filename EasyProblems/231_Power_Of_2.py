@@ -1,7 +1,7 @@
 import unittest
 
 
-class Solution:
+"""class Solution:
     def isPowerOfTwo(self, n: int) -> bool:
         if n == 1:
             return True
@@ -20,8 +20,8 @@ class Solution:
         return True
 
 
-
-class Solution2:
+"""
+class Solution:
     def isPowerOfTwo(self, n: int) -> bool:
         if n == 1:
             return True
@@ -46,5 +46,4 @@ class TestKthCharacter(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    print(bin(-16))
     unittest.main()
