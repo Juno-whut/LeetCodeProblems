@@ -1,6 +1,6 @@
 import unittest
 
-class Solution:
+class OGSolution:
     def validMountainArray(self, arr: list[int]) -> bool:
         arrlen = len(arr)
         if arrlen < 3:
@@ -26,7 +26,13 @@ class Solution:
         return True if Increasing and Decreasing else False
 
 
-
+class Solution:
+    def validMountainArray(self, arr: list[int]) -> bool:
+        arrlen = len(arr)
+        if arrlen < 3:
+            return False
+        
+        
 
 class TestValidMountainArray(unittest.TestCase):
     def setUp(self):
