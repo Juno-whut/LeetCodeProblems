@@ -5,13 +5,10 @@ class Solution:
     def topKFrequent(self, nums, k: int):
         if len(nums) == k:
             return nums
-        
-        if not nums or k == 0:
-            return []
 
         freq = {}
         for num in nums:
-            if num in freq.items():
+            if num in freq:
                 freq[num] += 1
             else:
                 freq[num] = 1
@@ -25,12 +22,11 @@ class Solution:
         
         result = []
         for freq in range(max_freq, 0, -1):
-            for num in buckets[freq]:
-                result.append(num)
+            result.extend(buckets[freq])
+            if k - len(result) == 0:
+                return result
 
-        if len(result) >= k:
-            return result[0:k]    
-    
+        
 
 class TopKFrequentTest(unittest.TestCase):
     def test_basecase_1(self):
