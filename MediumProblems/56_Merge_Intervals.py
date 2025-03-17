@@ -4,43 +4,17 @@ import unittest
 
 class Solution:
     def merge(self, intervals: list[list[int]]) -> list[list[int]]:
-        arrlen = len(intervals)
+        intervals = sorted(intervals, key=lambda x: x[0])
 
-        if arrlen == 1:
-            return intervals
-        
-        left = 0
-        right = 1
-        while left < right < arrlen:
-            if intervals[left] == [0,0] or intervals[right] == [0,0]:
-                    intervals.insert(0, [0,0])
-                    intervals.pop(left+1) if intervals[left+1] == [0,0] else intervals.pop(right+1)
-                    left += 1 
-                    right += 1
-                    arrlen -= 1
-            elif intervals[left][1] == intervals[right][1]:
-                intervals.pop(left)
-                arrlen -= 1
-                left += 1
-                right += 1
-            elif intervals[left][1] >= intervals[right][0]:
-                maxleft = max(intervals[left])
-                minleft = min(intervals[left])
-                maxright = max(intervals[right])
-                minright = min(intervals[right])
-
-                intervals.pop(right)
-                intervals[left] = [min(minleft, minright), max(maxleft, maxright)]
-                arrlen -= 1
-            elif intervals[right][0] < intervals[left][0]:
-                intervals.pop(left)
-                arrlen -= 1
-                left -= 1
-                right -= 1
-            else:
-                left += 1
-                right += 1
-        return intervals
+        curr = 0
+        res = [intervals[0]]
+        for i in range(1, len(intervals)):
+            if intervals[i][0] > res[curr][1]:
+                curr += 1
+                res.append(intervals[i])
+            elif res[curr][1] <= intervals[i][1]:
+                res[curr][1] = intervals[i][1] 
+        return res
 
 
 
