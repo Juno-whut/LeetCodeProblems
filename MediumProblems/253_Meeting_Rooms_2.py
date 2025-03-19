@@ -16,7 +16,7 @@ class Solution:
             if start_times[start] >= end_times[end]:
                 rooms -= 1
                 end += 1
-            
+
             rooms += 1
             start += 1
         return rooms
